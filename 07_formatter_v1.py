@@ -1,5 +1,9 @@
+"""component 5 - statement formatter v1
+"""
+
+symbol = "*"
 text = "Hello world"
-sides = "$" * 3
+sides = symbol * 3
 
 formatted_text = (f'{sides} {text} {sides}')
 top_bottom = "*" * len(formatted_text)
