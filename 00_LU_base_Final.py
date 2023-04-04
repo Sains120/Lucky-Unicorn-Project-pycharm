@@ -1,5 +1,6 @@
-"""LU Base component - based on 00_LU_base_v2
-Components added after they have been created and tested
+"""LU Base component - based on 00_LU_base_v3
+Adding instructions to instructions function and further text decorations
+including round number and token
 """
 import random
 
@@ -77,31 +78,32 @@ play_again = ""
 # testing loop to generate tokens
 while play_again != "x":
     rounds_played += 1
+    print(formatter(".", f"Round: {rounds_played}"))
+    print()
     number = random.randint(1, 100)
 
     if 1 <= number <= 5:
-        token = "unicorn"
         balance += 4
         print(formatter("!", "Congratulations, you got a unicorn"))
         print()
 
     elif 6 <= number <= 36:
-        token = "donkey"
         balance -= 1
         print("Bad luck you got a donkey.")
+        print()
 
     else:
         if number % 2 == 0:
-            token = "zebra"
             balance -= 0.5
             print("You got a zebra")
+            print()
         else:
-            token = "horse"
             balance -= 0.5
             print("You got a horse")
+            print()
 
         # output
-        print(f"round: {rounds_played}. Token: {token}. Balance: ${balance:.2sf}")
+        print(f"Your balance is now: ${balance:.2sf})
         if balance < 1:
             print("\n Sorry you have run out of money.")
             play_again = "x"
@@ -112,7 +114,11 @@ while play_again != "x":
 
 
 # function to format text output
-def formatter(symbol, text):...
+def formatter(symbol, text):
+    sides = symbol * 3
+    formated_text = f"{sides} {text} {sides}"
+    top_bottom = symbol * len(formated_text)
+    return f"{top_bottom}\n {formated_text}\n {top_bottom}"
 
 
 # main routine go here...
@@ -127,7 +133,7 @@ if played_before == "no":
 
 # ask the user how much they want to play with
 starting_balance = num_check("How much would you like to play with $ ", 1, 10)
-print(f"You are playing with ${starting_balance}")
+print(f"You are playing with ${starting_balance:.2sf}\n")
 
 closing_balance = generate_token(starting_balance)
 print("Thanks for playing")
