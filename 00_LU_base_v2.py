@@ -1,4 +1,4 @@
-"""LU Base component - based on 00_LU_base_v1
+"""LU Base component - based on 00_LU_base_v2
 Components added after they have been created and tested
 """
 import random
@@ -27,9 +27,7 @@ def yes_no(questions_text):
 
 #function to display instructions
 def instructions():
-    print("***** How to play the lucky unicorn game *****\n"
-          "Enter your balance and press enter after you get a token and want to continue. "
-          "Press x if you want to exit.")
+    print("***** How to play *****")
     print()
     print("The rules of the game will go here")
     print()

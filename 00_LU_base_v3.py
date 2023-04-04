@@ -1,4 +1,4 @@
-"""LU Base component - based on 00_LU_base_v1
+"""LU Base component - based on 00_LU_base_v3
 Components added after they have been created and tested
 """
 import random
@@ -27,11 +27,23 @@ def yes_no(questions_text):
 
 #function to display instructions
 def instructions():
-    print("***** How to play the lucky unicorn game *****\n"
-          "Enter your balance and press enter after you get a token and want to continue. "
-          "Press x if you want to exit.")
     print()
-    print("The rules of the game will go here")
+    print(formatter("*", "How to play"))
+    print()
+    print("Choose a starting amount to play with - must be between $1 and $10")
+    print()
+    print("Then press <enter> to play. You will get a random token which may be a"
+          " horse, a donkey, a zebra, or a unicorn.")
+    print()
+    print("It costs $1 to play each round but, depending on your price, you may get some of your money "
+          "back.\nThese are the payout amounts: \n"
+          "\tUnicorn: $5 (balance increased by $4)\n"
+          "\tZebra $0.50 (balance decreased by $0.50)\n"
+          "\tHorse $0.50 (balance decreased by $0.50)\n"
+          "\tDonkey $0 (balance decreased by $1)\n")
+    print("\n See if you can avoid donkeys, get the unicorns, and finish with more money "
+          "than you started with.\n")
+    print("*" * 50)
     print()
 
 
@@ -59,31 +71,34 @@ def num_check(question, low, high):
 # function to generate random token
 def generate_token(balance):...
 
-    rounds_played = 0
-    play_again = ""
+rounds_played = 0
+play_again = ""
 
-    # testing loop to generate tokens
-    while play_again != "x":
-        rounds_played += 1
-        number = random.randint(1, 100)
+# testing loop to generate tokens
+while play_again != "x":
+    rounds_played += 1
+    number = random.randint(1, 100)
 
-        if 1 <= number <= 5:
-            token = "unicorn"
-            balance += 4
-            print(formatter("!", "Congratulations, you got a unicorn"))
-            print()
+    if 1 <= number <= 5:
+        token = "unicorn"
+        balance += 4
+        print(formatter("!", "Congratulations, you got a unicorn"))
+        print()
 
-        elif 6 <= number <= 36:
-            token = "donkey"
-            balance -= 1
+    elif 6 <= number <= 36:
+        token = "donkey"
+        balance -= 1
+        print("Bad luck you got a donkey.")
 
+    else:
+        if number % 2 == 0:
+            token = "zebra"
+            balance -= 0.5
+            print("You got a zebra")
         else:
-            if number % 2 == 0:
-                token = "zebra"
-                balance -= 0.5
-            else:
-                token = "horse"
-                balance -= 0.5
+            token = "horse"
+            balance -= 0.5
+            print("You got a horse")
 
         # output
         print(f"round: {rounds_played}. Token: {token}. Balance: ${balance:.2sf}")
